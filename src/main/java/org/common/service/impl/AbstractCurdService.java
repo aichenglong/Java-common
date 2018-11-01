@@ -89,7 +89,7 @@ public abstract class AbstractCurdService<T extends DataEntity, ID> implements C
     public T findBy(String property, Object value) throws TooManyResultsException {
         return null;
     }
-
+    @ReadDataSource
     @Override
     public PageInfo<T> queryPage(T t, int currentPage, int pageSize) {
         PageHelper.startPage(currentPage, pageSize);
