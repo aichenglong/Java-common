@@ -73,7 +73,6 @@ public interface CurdService<T extends DataEntity, ID> extends BaseService {
 
 
 
-    List<T> findByCondition(Condition condition);//根据条件查找
 
 
     T findBy(String property, Object value) throws TooManyResultsException; //通过某个成员属性查找,value需符合unique约束

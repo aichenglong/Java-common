@@ -78,11 +78,6 @@ public abstract class AbstractCurdService<T extends DataEntity, ID> implements C
         return getCurdDao().findAll();
     }
 
-    @ReadDataSource
-    @Override
-    public List<T> findByCondition(Condition condition) {
-        return null;
-    }
 
     @ReadDataSource
     @Override
