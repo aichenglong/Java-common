@@ -55,7 +55,12 @@
       <artifactId>commons-beanutils</artifactId>
       <version>1.7.0</version>
     </dependency>
-
+    <!-- 分页插件 -->
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+      <version>4.1.6</version>
+    </dependency>
     <!-- Logging begin -->
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -151,6 +156,11 @@
       <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>
       <version>6.0.13.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>3.4.6</version>
     </dependency>
 
   </dependencies>
