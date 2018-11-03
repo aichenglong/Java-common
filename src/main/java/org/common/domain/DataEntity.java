@@ -2,6 +2,7 @@ package org.common.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.Date;
@@ -27,22 +28,25 @@ public abstract class DataEntity<T, ID> extends BaseEntity {
     /**
      * 创建日期
      */
+    @ApiModelProperty(value = "创建日期",hidden = true)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createDate;
     /**
      * 更新日期
      */
+    @ApiModelProperty(value = "更新日期",hidden = true)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateDate;
     /**
      * 删除标记(0:正常;1:删除;)
      */
-    private String delFlag;
+    @ApiModelProperty(value = "删除标记(0:正常;1:删除;)",hidden = true)
+    private String status;
 
 
     public DataEntity() {
         super();
-        this.delFlag = DEL_FLAG_NORMAL;
+        this.status = DEL_FLAG_NORMAL;
     }
 
     public DataEntity(ID id) {
@@ -87,11 +91,11 @@ public abstract class DataEntity<T, ID> extends BaseEntity {
 
     @JsonIgnore
     @Length(min = 1, max = 1)
-    public String getDelFlag() {
-        return delFlag;
+    public String getStatus() {
+        return status;
     }
 
-    public void setDelFlag(String delFlag) {
-        this.delFlag = delFlag;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
