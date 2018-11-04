@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Description:
  * Created by ICL on 2018/10/22.
  */
-public abstract class BaseEntity<ID> implements Serializable {
+public abstract class BaseEntity<ID extends java.io.Serializable> implements Serializable {
 
     private ID id;
 

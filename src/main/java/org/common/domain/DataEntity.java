@@ -3,7 +3,10 @@ package org.common.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
+import org.common.idgen.IdGenerate;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Date;
 
@@ -13,7 +16,7 @@ import java.util.Date;
  * Description:
  * Created by ICL on 2018/10/22.
  */
-public abstract class DataEntity<T, ID> extends BaseEntity {
+public abstract class DataEntity<T, ID extends java.io.Serializable > extends BaseEntity {
     /**
      * 删除标记0：正常
      */
@@ -30,18 +33,43 @@ public abstract class DataEntity<T, ID> extends BaseEntity {
      */
     @ApiModelProperty(value = "创建日期",hidden = true)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonIgnore
     private Date createDate;
     /**
      * 更新日期
      */
     @ApiModelProperty(value = "更新日期",hidden = true)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonIgnore
     private Date updateDate;
     /**
      * 删除标记(0:正常;1:删除;)
      */
     @ApiModelProperty(value = "删除标记(0:正常;1:删除;)",hidden = true)
     private String status;
+
+    /**
+     * 租户名称
+     */
+    private String corpName;
+
+    /**
+     * 租户代码
+     */
+    private String corpCode;
+
+
+    /**
+     * @Fields createBy 创建者
+     */
+    @ApiModelProperty(value = "创建者",hidden = true )
+    private String createBy;
+
+    /**
+     * @Fields updateBy 更新者
+     */
+    @ApiModelProperty(value = "更新者" ,hidden = true)
+    private String updateBy;
 
 
     public DataEntity() {
@@ -59,9 +87,14 @@ public abstract class DataEntity<T, ID> extends BaseEntity {
      */
     @Override
     public void preInsert() {
-//        this.setId(IdGenerate.nextId());
+        this.setId(IdGenerate.nextId());
         this.updateDate = new Date();
         this.createDate = this.updateDate;
+        String userDetails = (String) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal();
+        this.updateBy=userDetails;
+        this.createBy=userDetails;
     }
 
     /**
@@ -89,6 +122,23 @@ public abstract class DataEntity<T, ID> extends BaseEntity {
         this.updateDate = updateDate == null ? null : (Date) updateDate.clone();
     }
 
+
+    public String getCorpName() {
+        return corpName;
+    }
+
+    public void setCorpName(String corpName) {
+        this.corpName = corpName;
+    }
+
+    public String getCorpCode() {
+        return corpCode;
+    }
+
+    public void setCorpCode(String corpCode) {
+        this.corpCode = corpCode;
+    }
+
     @JsonIgnore
     @Length(min = 1, max = 1)
     public String getStatus() {
@@ -97,5 +147,21 @@ public abstract class DataEntity<T, ID> extends BaseEntity {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
+    }
+
+    public String getUpdateBy() {
+        return updateBy;
+    }
+
+    public void setUpdateBy(String updateBy) {
+        this.updateBy = updateBy;
     }
 }
