@@ -269,7 +269,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 	
 	/**
 	 * 获取服务器启动时间
-	 * @param date
+	 * @param
 	 * @return
 	 */
 	public static Date getServerStartDate(){

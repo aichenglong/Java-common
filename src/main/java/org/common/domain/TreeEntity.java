@@ -1,5 +1,7 @@
 package org.common.domain;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,24 +17,28 @@ public abstract class TreeEntity<T, ID extends Serializable> extends DataEntity<
     /**
      * 父级编号
      */
+    @ApiModelProperty(value = "父级编号")
     private ID parentId;
 
     /**
-     * 排序
+     * 排序号
      */
+    @ApiModelProperty(value = "排序号",example = "0")
     private Long treeSort;
 
     /**
      * 是否最末级
      */
+    @ApiModelProperty(value = "是否最末级",hidden = true)
     private String treeLeaf;
 
     /**
      * 层次级别
      */
+    @ApiModelProperty(value = "层次级别",example = "0")
     private Short  treeLevel;
 
-
+    @ApiModelProperty(value = "子菜单",hidden = true)
     private List<T> children=new ArrayList<>();
 
     public ID getParentId() {

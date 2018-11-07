@@ -51,22 +51,24 @@ public abstract class DataEntity<T, ID extends java.io.Serializable > extends Ba
     /**
      * 租户名称
      */
+    @ApiModelProperty(value = "租户名称)",hidden = true)
     private String corpName;
 
     /**
      * 租户代码
      */
+    @ApiModelProperty(value = "租户代码)",hidden = true)
     private String corpCode;
 
 
     /**
-     * @Fields createBy 创建者
+     *  createBy 创建者
      */
     @ApiModelProperty(value = "创建者",hidden = true )
     private String createBy;
 
     /**
-     * @Fields updateBy 更新者
+     *  updateBy 更新者
      */
     @ApiModelProperty(value = "更新者" ,hidden = true)
     private String updateBy;
@@ -90,11 +92,11 @@ public abstract class DataEntity<T, ID extends java.io.Serializable > extends Ba
         this.setId(IdGenerate.nextId());
         this.updateDate = new Date();
         this.createDate = this.updateDate;
-        String userDetails = (String) SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getPrincipal();
-        this.updateBy=userDetails;
-        this.createBy=userDetails;
+//        String userDetails = (String) SecurityContextHolder.getContext()
+//                .getAuthentication()
+//                .getPrincipal();
+//        this.updateBy="admin";
+//        this.createBy="admin";
     }
 
     /**

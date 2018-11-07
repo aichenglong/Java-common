@@ -30,6 +30,8 @@ public class EncodeUtils extends org.apache.commons.collections.ListUtils {
 
     /**
      * Hex编码.
+     * @param input 需要转码的字节数组
+     * @return
      */
     public static String encodeHex(byte[] input) {
         return new String(Hex.encodeHex(input));
@@ -37,6 +39,8 @@ public class EncodeUtils extends org.apache.commons.collections.ListUtils {
 
     /**
      * Hex解码.
+     * @param input 需要解码的字符串
+     * @return
      */
     public static byte[] decodeHex(String input) {
         try {
@@ -48,6 +52,8 @@ public class EncodeUtils extends org.apache.commons.collections.ListUtils {
 
     /**
      * Base64编码.
+     * @param input 需要编码的自己数组
+     * @return
      */
     public static String encodeBase64(byte[] input) {
         return new String(Base64.encodeBase64(input));
@@ -55,6 +61,8 @@ public class EncodeUtils extends org.apache.commons.collections.ListUtils {
 
     /**
      * Base64编码.
+     * @param input
+     * @return
      */
     public static String encodeBase64(String input) {
         try {
@@ -73,6 +81,8 @@ public class EncodeUtils extends org.apache.commons.collections.ListUtils {
 
     /**
      * Base64解码.
+     * @param input
+     * @return
      */
     public static byte[] decodeBase64(String input) {
         return Base64.decodeBase64(input.getBytes());
@@ -80,6 +90,8 @@ public class EncodeUtils extends org.apache.commons.collections.ListUtils {
 
     /**
      * Base64解码.
+     * @param input
+     * @return
      */
     public static String decodeBase64String(String input) {
         try {
@@ -91,6 +103,8 @@ public class EncodeUtils extends org.apache.commons.collections.ListUtils {
 
     /**
      * Base62编码。
+     * @param input
+     * @return
      */
     public static String encodeBase62(byte[] input) {
         char[] chars = new char[input.length];
@@ -102,6 +116,8 @@ public class EncodeUtils extends org.apache.commons.collections.ListUtils {
 
     /**
      * Html 转码.
+     * @param html
+     * @return
      */
     public static String encodeHtml(String html) {
         return StringEscapeUtils.escapeHtml4(html);
@@ -109,6 +125,8 @@ public class EncodeUtils extends org.apache.commons.collections.ListUtils {
 
     /**
      * Html 解码.
+     * @param htmlEscaped
+     * @return
      */
     public static String decodeHtml(String htmlEscaped) {
         return StringEscapeUtils.unescapeHtml4(htmlEscaped);
@@ -116,6 +134,8 @@ public class EncodeUtils extends org.apache.commons.collections.ListUtils {
 
     /**
      * Xml 转码.
+     * @param xml
+     * @return
      */
     public static String encodeXml(String xml) {
         return StringEscapeUtils.escapeXml10(xml);
@@ -123,6 +143,8 @@ public class EncodeUtils extends org.apache.commons.collections.ListUtils {
 
     /**
      * Xml 解码.
+     * @param xmlEscaped
+     * @return
      */
     public static String decodeXml(String xmlEscaped) {
         return StringEscapeUtils.unescapeXml(xmlEscaped);
@@ -130,13 +152,18 @@ public class EncodeUtils extends org.apache.commons.collections.ListUtils {
 
     /**
      * URL 编码, Encode默认为UTF-8.
+     * @param part
+     * @return
      */
     public static String encodeUrl(String part) {
         return encodeUrl(part, DEFAULT_URL_ENCODING);
     }
 
     /**
-     * URL 编码, Encode默认为UTF-8.
+     *  URL 编码, Encode默认为UTF-8.
+     * @param part
+     * @param encoding
+     * @return
      */
     public static String encodeUrl(String part, String encoding) {
         if (part == null) {
@@ -151,13 +178,19 @@ public class EncodeUtils extends org.apache.commons.collections.ListUtils {
 
     /**
      * URL 解码, Encode默认为UTF-8.
+     * @param part
+     * @return
      */
     public static String decodeUrl(String part) {
         return decodeUrl(part, DEFAULT_URL_ENCODING);
     }
 
+
     /**
      * URL 解码, Encode默认为UTF-8.
+     * @param part
+     * @param encoding
+     * @return
      */
     public static String decodeUrl(String part, String encoding) {
         if (part == null) {
@@ -171,7 +204,9 @@ public class EncodeUtils extends org.apache.commons.collections.ListUtils {
     }
 
     /**
-     * URL 解码（两次）, Encode默认为UTF-8.
+     *  URL 解码（两次）, Encode默认为UTF-8.
+     * @param part
+     * @return
      */
     public static String decodeUrl2(String part) {
         return decodeUrl(decodeUrl(part));
@@ -186,9 +221,9 @@ public class EncodeUtils extends org.apache.commons.collections.ListUtils {
     );
 
     /**
-     * XSS 非法字符过滤，内容以<!--HTML-->开头的用以下规则（保留标签）
-     *
-     * @author ThinkGem
+     * XSS 非法字符过滤，内容以
+     * @param text
+     * @return
      */
     public static String xssFilter(String text) {
         String oriValue = StringUtils.trim(text);
@@ -222,8 +257,8 @@ public class EncodeUtils extends org.apache.commons.collections.ListUtils {
 
     /**
      * SQL过滤，防止注入，传入参数输入有select相关代码，替换空。
-     *
-     * @author ThinkGem
+     * @param text
+     * @return
      */
     public static String sqlFilter(String text) {
         if (text != null) {
