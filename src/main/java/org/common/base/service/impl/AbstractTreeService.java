@@ -1,9 +1,8 @@
-package org.common.service.impl;
+package org.common.base.service.impl;
 
-import org.common.domain.TreeEntity;
-import org.common.service.TreeService;
+import org.common.base.service.TreeService;
+import org.common.base.domain.TreeEntity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

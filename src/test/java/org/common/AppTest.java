@@ -2,6 +2,7 @@ package org.common;
 
 import static org.junit.Assert.assertTrue;
 
+import org.common.idgen.IdGenerate;
 import org.junit.Test;
 
 /**
@@ -17,4 +18,11 @@ public class AppTest
     {
         assertTrue( true );
     }
+
+    public static void main(String[] args) {
+
+    }
+    @Test
+    public void testNextCode(){ System.out.println( IdGenerate.nextCode("用户99"));}
+
 }

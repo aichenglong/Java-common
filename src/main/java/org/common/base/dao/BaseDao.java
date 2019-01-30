@@ -1,4 +1,5 @@
-package org.common.service;
+package org.common.base.dao;
+
 
 /**
  * Author: ICL
@@ -6,6 +7,6 @@ package org.common.service;
  * Description:
  * Created by ICL on 2018/10/22.
  */
-public interface BaseService {
+public interface BaseDao<T, ID> {
 
 }

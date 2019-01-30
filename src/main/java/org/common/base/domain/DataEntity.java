@@ -1,12 +1,11 @@
-package org.common.domain;
+package org.common.base.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import org.common.idgen.IdGenerate;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Date;
 
@@ -33,15 +32,23 @@ public abstract class DataEntity<T, ID extends java.io.Serializable > extends Ba
      */
     @ApiModelProperty(value = "创建日期",hidden = true)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @JsonIgnore
     private Date createDate;
+
+    @ApiModelProperty(value = "创建用户",hidden = true)
+    private String createBy;
     /**
      * 更新日期
      */
     @ApiModelProperty(value = "更新日期",hidden = true)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @JsonIgnore
     private Date updateDate;
+
+    @ApiModelProperty(value = "更新用户",hidden = true)
+    private String updateBy;
     /**
      * 删除标记(0:正常;1:删除;)
      */
@@ -61,17 +68,11 @@ public abstract class DataEntity<T, ID extends java.io.Serializable > extends Ba
     private String corpCode;
 
 
-    /**
-     *  createBy 创建者
-     */
-    @ApiModelProperty(value = "创建者",hidden = true )
-    private String createBy;
 
-    /**
-     *  updateBy 更新者
-     */
-    @ApiModelProperty(value = "更新者" ,hidden = true)
-    private String updateBy;
+
+
+    @ApiModelProperty(value = "备注信息")
+    private String remarks;
 
 
     public DataEntity() {
@@ -151,6 +152,7 @@ public abstract class DataEntity<T, ID extends java.io.Serializable > extends Ba
         this.status = status;
     }
 
+
     public String getCreateBy() {
         return createBy;
     }
@@ -165,5 +167,13 @@ public abstract class DataEntity<T, ID extends java.io.Serializable > extends Ba
 
     public void setUpdateBy(String updateBy) {
         this.updateBy = updateBy;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 }

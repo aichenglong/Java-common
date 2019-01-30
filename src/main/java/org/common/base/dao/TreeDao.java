@@ -1,7 +1,6 @@
-package org.common.dao;
+package org.common.base.dao;
 
-import org.common.domain.DataEntity;
-import org.common.domain.TreeEntity;
+import org.common.base.domain.TreeEntity;
 
 /**
  * Author: ICL

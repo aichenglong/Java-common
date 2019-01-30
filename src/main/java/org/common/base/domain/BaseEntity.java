@@ -1,4 +1,4 @@
-package org.common.domain;
+package org.common.base.domain;
 
 //import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import java.io.Serializable;

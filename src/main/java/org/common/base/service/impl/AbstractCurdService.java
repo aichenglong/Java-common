@@ -1,17 +1,16 @@
-package org.common.service.impl;
+package org.common.base.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.common.annotation.ReadDataSource;
 import org.common.annotation.WriteDataSource;
-import org.common.dao.CurdDao;
-import org.common.domain.DataEntity;
-import org.common.service.CurdService;
+import org.common.base.dao.CurdDao;
+import org.common.base.service.CurdService;
+import org.common.base.domain.DataEntity;
+import org.common.lang.StringUtils;
 
-import javax.print.Doc;
 import java.util.List;
-import java.util.concurrent.locks.Condition;
 
 /**
  * Author: ICL
@@ -19,7 +18,8 @@ import java.util.concurrent.locks.Condition;
  * Description:
  * Created by ICL on 2018/10/26.
  */
-public abstract class AbstractCurdService<T extends DataEntity, ID> implements CurdService<T, ID> {
+public abstract class AbstractCurdService<T extends DataEntity, ID extends java.io.Serializable> extends AbstractBaseService<T,
+        ID> implements CurdService<T, ID> {
 
     public abstract CurdDao<T, ID> getCurdDao();
 
@@ -31,16 +31,18 @@ public abstract class AbstractCurdService<T extends DataEntity, ID> implements C
 
     @WriteDataSource
     @Override
-    public int insert(T record) {
+    public T  insert(T record) {
         record.preInsert();
-        return getCurdDao().insert(record);
+        record.setId(getCurdDao().insert(record));
+        return record;
     }
 
     @WriteDataSource
     @Override
-    public int insertSelective(T record) {
+    public T insertSelective(T record) {
         record.preInsert();
-        return getCurdDao().insertSelective(record);
+        record.setId(getCurdDao().insertSelective(record));
+        return record;
     }
 
 
@@ -52,37 +54,36 @@ public abstract class AbstractCurdService<T extends DataEntity, ID> implements C
 
     @WriteDataSource
     @Override
-    public int updateByPrimaryKeySelective(T record) {
+    public T updateByPrimaryKeySelective(T record) {
         record.preUpdate();
-        return getCurdDao().updateByPrimaryKeySelective(record);
+        record.setId(getCurdDao().updateByPrimaryKeySelective(record));
+        return record;
     }
 
     @WriteDataSource
     @Override
-    public int updateByPrimaryKey(T record) {
+    public T updateByPrimaryKey(T record) {
         record.preUpdate();
-        return getCurdDao().updateByPrimaryKey(record);
+        record.setId(getCurdDao().updateByPrimaryKey(record));
+        return record;
     }
 
 
-    @WriteDataSource
-    @Override
-    public void deleteById(ID id) {
-        getCurdDao().deleteByPrimaryKey(id);
-    }
 
 
     @ReadDataSource
     @Override
     public List<T> findAll() {
+
         return getCurdDao().findAll();
     }
 
 
     @ReadDataSource
     @Override
-    public T findBy(String property, Object value) throws TooManyResultsException {
-        return null;
+    public T findByCondition(String property, Object value) throws TooManyResultsException {
+
+        return getCurdDao().findByCondition(StringUtils.uncamelCase(property),value);
     }
     @ReadDataSource
     @Override
