@@ -17,13 +17,13 @@ import java.util.Date;
  */
 public abstract class DataEntity<T, ID extends java.io.Serializable > extends BaseEntity {
     /**
-     * 删除标记0：正常
-     */
-    public static final String DEL_FLAG_NORMAL = "0";
-    /**
-     * 删除标记1：删除
-     */
-    public static final String DEL_FLAG_DELETE = "1";
+//     * 删除标记0：正常
+//     */
+//    private static final String DEL_FLAG_NORMAL = "0";
+//    /**
+//     * 删除标记1：删除
+//     */
+//    private static final String DEL_FLAG_DELETE = "1";
 
     private static final long serialVersionUID = -4839183827907638164L;
 
@@ -77,7 +77,7 @@ public abstract class DataEntity<T, ID extends java.io.Serializable > extends Ba
 
     public DataEntity() {
         super();
-        this.status = DEL_FLAG_NORMAL;
+//        this.status = DEL_FLAG_NORMAL;
     }
 
     public DataEntity(ID id) {

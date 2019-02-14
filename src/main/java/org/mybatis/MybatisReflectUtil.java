@@ -8,7 +8,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MybatisReflectUtil {
 
@@ -29,12 +31,17 @@ public class MybatisReflectUtil {
 
     public static Field[] getModelField(Class<?> modelClass) {
         List<Field> fields = new ArrayList<>();
-        Field[] declaredFields = modelClass.getDeclaredFields();
-        for (Field field : declaredFields) {
-            if ("serialVersionUID".equals(field.getName()))
-                continue;
-            fields.add(field);
+        while (modelClass != null && !modelClass.getName().toLowerCase().equals("java.lang.object")) {//当父类为null的时候说明到达了最上层的父类(Object类).
+            fields.addAll(Arrays.asList(modelClass .getDeclaredFields()).stream().filter(e->!e.getName().equalsIgnoreCase("serialVersionUID")).collect(Collectors.toList()));
+            modelClass = modelClass.getSuperclass(); //得到父类,然后赋给自己
         }
+//
+//        Field[] declaredFields = modelClass.getDeclaredFields();
+//        for (Field field : declaredFields) {
+//            if ("serialVersionUID".equals(field.getName()))
+//                continue;
+//            fields.add(field);
+//        }
         return fields.toArray(new Field[0]);
     }
 
@@ -56,6 +63,15 @@ public class MybatisReflectUtil {
 
         return null;
     }
+    public static String getTableName(Class<?> modelClass) {
+        Table table = modelClass.getAnnotation(Table.class);
+        if (null != table) {
+            if (StringUtils.isNotBlank(table.value())) {
+                return table.value();
+            }
+        }
+        return null;
 
+    }
 
 }

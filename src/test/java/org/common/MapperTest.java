@@ -18,20 +18,20 @@ public class MapperTest {
 
         User user = null;
 
-        // 新增测试
-        System.out.println("------------ 新增测试 ------------");
-        user = new User();
+//        // 新增测试
+//        System.out.println("------------ 新增测试 ------------");
+//        user = new User();
+////        user.setId(1L);
+//        user.setUserName("conanli");
+//        user.setPassword("123456");
+//        System.out.println("insert: " + userMapper.insert(user));
+//
+//        // 更新测试
+//        System.out.println("------------ 更新测试 ------------");
+//        user = new User();
 //        user.setId(1L);
-        user.setAccount("conanli");
-        user.setPassword("123456");
-        System.out.println("insert: " + userMapper.insert(user));
-
-        // 更新测试
-        System.out.println("------------ 更新测试 ------------");
-        user = new User();
-        user.setId(1L);
-        user.setPassword("111111");
-        System.out.println("update: " + userMapper.updateByPrimaryKeySelective(user));
+//        user.setPassword("111111");
+//        System.out.println("update: " + userMapper.updateByPrimaryKeySelective(user));
 
         // 获取测试
         System.out.println("------------ 获取测试 ------------");

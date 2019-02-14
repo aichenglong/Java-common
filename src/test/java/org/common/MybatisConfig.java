@@ -29,7 +29,7 @@ public class MybatisConfig {
     private static PooledDataSource getDataSource() {
         PooledDataSource dataSource = dataSource = new PooledDataSource();
         dataSource.setDriver("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://118.24.16.110:3306/test");
+        dataSource.setUrl("jdbc:mysql://118.24.16.110:3306/mix");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
         return dataSource;

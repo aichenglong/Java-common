@@ -1,13 +1,14 @@
 package org.common.model;
-
+import org.mybatis.Table;
 import org.common.base.domain.DataEntity;
 import org.mybatis.PrimaryKey;
 
+@Table("sys_user")
 public class User extends DataEntity<User,Long> {
 
     @PrimaryKey("id")
     private Long id;
-    private String account;
+    private String userName;
     private String password;
 
     public Long getId() {
@@ -18,12 +19,12 @@ public class User extends DataEntity<User,Long> {
         this.id = id;
     }
 
-    public String getAccount() {
-        return account;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -36,6 +37,6 @@ public class User extends DataEntity<User,Long> {
 
     @Override
     public String toString() {
-        return String.format("User{id=%d, account=%s, password=%s}", id, account, password);
+        return String.format("User{id=%d, account=%s, password=%s}", id, userName, password);
     }
 }

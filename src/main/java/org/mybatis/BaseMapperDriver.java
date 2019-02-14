@@ -82,6 +82,8 @@ public class BaseMapperDriver extends XMLLanguageDriver {
             String tableName = null;
             if (resultMap != null)
                 tableName = resultMap.getId().substring(mapperClass.getName().length() + 1);
+
+            tableName= MybatisReflectUtil.getTableName(modelClass);
             if (tableName == null)
                 tableName = toUnderline(modelClass.getSimpleName());
 
