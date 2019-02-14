@@ -81,32 +81,32 @@ public abstract class DataEntity<T, ID extends java.io.Serializable > extends Ba
     }
 
     public DataEntity(ID id) {
-        super(id);
+//        super(id);
     }
 
 
     /**
      * 插入之前执行方法，需要手动调用
      */
-    @Override
-    public void preInsert() {
-        this.setId(IdGenerate.nextId());
-        this.updateDate = new Date();
-        this.createDate = this.updateDate;
-//        String userDetails = (String) SecurityContextHolder.getContext()
-//                .getAuthentication()
-//                .getPrincipal();
-//        this.updateBy="admin";
-//        this.createBy="admin";
-    }
+//    @Override
+//    public void preInsert() {
+////        this.setId(IdGenerate.nextId());
+//        this.updateDate = new Date();
+//        this.createDate = this.updateDate;
+////        String userDetails = (String) SecurityContextHolder.getContext()
+////                .getAuthentication()
+////                .getPrincipal();
+////        this.updateBy="admin";
+////        this.createBy="admin";
+//    }
 
-    /**
-     * 更新之前执行方法，需要手动调用
-     */
-    @Override
-    public void preUpdate() {
-        this.updateDate = new Date();
-    }
+//    /**
+//     * 更新之前执行方法，需要手动调用
+//     */
+//    @Override
+//    public void preUpdate() {
+//        this.updateDate = new Date();
+//    }
 
 
     public Date getCreateDate() {

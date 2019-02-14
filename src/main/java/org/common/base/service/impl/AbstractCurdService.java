@@ -32,16 +32,16 @@ public abstract class AbstractCurdService<T extends DataEntity, ID extends java.
     @WriteDataSource
     @Override
     public T  insert(T record) {
-        record.preInsert();
-        record.setId(getCurdDao().insert(record));
+//        record.preInsert();
+//        record.setId(getCurdDao().insert(record));
         return record;
     }
 
     @WriteDataSource
     @Override
     public T insertSelective(T record) {
-        record.preInsert();
-        record.setId(getCurdDao().insertSelective(record));
+//        record.preInsert();
+//        record.setId(getCurdDao().insertSelective(record));
         return record;
     }
 
@@ -55,16 +55,16 @@ public abstract class AbstractCurdService<T extends DataEntity, ID extends java.
     @WriteDataSource
     @Override
     public T updateByPrimaryKeySelective(T record) {
-        record.preUpdate();
-        record.setId(getCurdDao().updateByPrimaryKeySelective(record));
+//        record.preUpdate();
+//        record.setId(getCurdDao().updateByPrimaryKeySelective(record));
         return record;
     }
 
     @WriteDataSource
     @Override
     public T updateByPrimaryKey(T record) {
-        record.preUpdate();
-        record.setId(getCurdDao().updateByPrimaryKey(record));
+//        record.preUpdate();
+//        record.setId(getCurdDao().updateByPrimaryKey(record));
         return record;
     }
 

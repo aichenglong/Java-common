@@ -59,9 +59,9 @@ public abstract class AbstractTreeService<T extends TreeEntity, ID  extends java
         while (it.hasNext()) {
             T child = it.next();
             //判断集合的父ID是否等于上一级的id
-            if ((((TreeEntity<T, ID>) child).getParentId().toString()).equals (((TreeEntity<T, ID>) t).getId().toString())) {
-                childrenLists.add(child);
-            }
+//            if ((((TreeEntity<T, ID>) child).getParentId().toString()).equals (((TreeEntity<T, ID>) t).getId().toString())) {
+//                childrenLists.add(child);
+//            }
         }
         return childrenLists;
     }

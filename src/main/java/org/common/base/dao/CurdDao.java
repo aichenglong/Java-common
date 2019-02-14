@@ -1,8 +1,9 @@
 package org.common.base.dao;
 
 
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 import org.common.base.domain.DataEntity;
+import org.mybatis.BaseMapperDriver;
 
 import java.util.List;
 
@@ -19,6 +20,8 @@ public interface CurdDao<T extends DataEntity, ID extends java.io.Serializable> 
      * @param id 主键ID
      * @return
      */
+    @Lang(BaseMapperDriver.class)
+    @Delete("DELETE FROM ${table} WHERE ${id}=#{id}")
     int deleteByPrimaryKey(ID id);
 
     /**
@@ -26,6 +29,8 @@ public interface CurdDao<T extends DataEntity, ID extends java.io.Serializable> 
      * @param record 实体类
      * @return
      */
+    @Lang(BaseMapperDriver.class)
+    @Insert({"<script>", "INSERT INTO ${table} ${values}", "</script>"})
     ID insert(T record);
 
     /**
@@ -33,6 +38,8 @@ public interface CurdDao<T extends DataEntity, ID extends java.io.Serializable> 
      * @param record 实体类
      * @return
      */
+    @Lang(BaseMapperDriver.class)
+    @Insert({"<script>", "INSERT INTO ${table} ${values}", "</script>"})
     ID insertSelective(T record);
 
     /**
@@ -40,6 +47,8 @@ public interface CurdDao<T extends DataEntity, ID extends java.io.Serializable> 
      * @param id 主键id
      * @return
      */
+    @Lang(BaseMapperDriver.class)
+    @Select("SELECT * FROM ${table} WHERE ${id}=#{id} and ${status}=#{status}")
     T selectByPrimaryKey(ID id);
 
     /**
@@ -47,6 +56,8 @@ public interface CurdDao<T extends DataEntity, ID extends java.io.Serializable> 
      * @param record 实体类
      * @return
      */
+    @Lang(BaseMapperDriver.class)
+    @Update({"<script>", "UPDATE ${table} ${sets} WHERE ${id}=#{id}", "</script>"})
     ID updateByPrimaryKeySelective(T record);
 
     /**
@@ -54,6 +65,7 @@ public interface CurdDao<T extends DataEntity, ID extends java.io.Serializable> 
      * @param record 实体类
      * @return
      */
+    @Update({"<script>", "UPDATE ${table} ${sets} WHERE ${id}=#{id}", "</script>"})
     ID updateByPrimaryKey(T record);
 
 
@@ -61,6 +73,8 @@ public interface CurdDao<T extends DataEntity, ID extends java.io.Serializable> 
      *  查询所有数据
      * @return  获取所有的数据
      */
+    @Lang(BaseMapperDriver.class)
+    @Select("SELECT * FROM ${table}")
     List<T> findAll();//获取所有
 
     /**
@@ -75,6 +89,8 @@ public interface CurdDao<T extends DataEntity, ID extends java.io.Serializable> 
      * @param record
      * @return
      */
+    @Lang(BaseMapperDriver.class)
+    @Select({"<script>","SELECT * FROM ${table} ${condition}", "</script>"})
     List<T> findByCondition(T record);//根据条件查找
 
 
